@@ -1,0 +1,10 @@
+.weahterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background: url(./assets/sky.jpg) no-repeat center / cover;
+}
+
