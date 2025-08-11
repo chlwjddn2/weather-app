@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 3.5rem;
+  font-size: 5.5rem;
 }
 .tempBox img {
   height: auto;
@@ -18,8 +18,15 @@
 }
 
 .locationBox {
-  margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  gap: .5rem;
+  gap: 1rem;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+.locationBox > p {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }

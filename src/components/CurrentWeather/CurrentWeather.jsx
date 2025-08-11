@@ -1,4 +1,5 @@
-// import { WiDaySunny, WiCloudy, WiRain, WiSnow } from 'react-icons/wi';
+import { MdLocationOn } from 'react-icons/md';
+import { FaRegCalendarAlt } from 'react-icons/fa';
 import styles from './CurrentWeather.module.css';
 import Section from '../Section/Section';
 import getFormattedDate from '../../utils/getData';
@@ -10,9 +11,6 @@ export default function CurrentWeather({weatherData = {}}) {
   const description = current.weather[0].description;
   const icon = current.weather[0].icon;
   const location = locationInfo.local_names.ko;
-
-  console.log(current);
-  
   
   return (
     <Section>
@@ -23,8 +21,8 @@ export default function CurrentWeather({weatherData = {}}) {
       </div>
       <p className={styles.description}>{description}</p>
       <div className={styles.locationBox}>
-        <p>{getFormattedDate()}</p>
-        <p>{location}</p>
+        <p><FaRegCalendarAlt />{getFormattedDate()}</p>
+        <p><MdLocationOn />{location}</p>
       </div>
     </Section>
     // <section className={styles.section}>
