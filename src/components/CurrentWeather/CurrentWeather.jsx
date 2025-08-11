@@ -25,21 +25,5 @@ export default function CurrentWeather({weatherData = {}}) {
         <p><MdLocationOn />{location}</p>
       </div>
     </Section>
-    // <section className={styles.section}>
-        
-    //     <div className={styles.wrapper}>
-    //       <p className={styles.heading}>
-    //         {/* {`${Math.round(temp)}°`}<sup>c</sup> */}
-    //       </p>
-    //       <img
-    //         src={iconUrl}
-    //         width="80"
-    //         height="80"
-    //         alt="clouds"
-    //         className={styles.img}
-    //       />
-    //     </div>
-    //   </section>
-    
   )
 }

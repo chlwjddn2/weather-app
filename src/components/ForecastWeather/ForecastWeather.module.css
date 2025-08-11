@@ -1,3 +1,10 @@
+.forecastList li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
+}
+
 .title {
   font-size: 1.5rem;
 }
@@ -6,11 +13,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 5.5rem;
 }
 
 .tempBox img {
-  height: auto;
+  height: 80px;
 }
 
 .description {

@@ -4,6 +4,7 @@ import { weatherReducer, initWeatherState } from './store/weatherReducer';
 import styles from './App.module.css';
 import Header from './components/Header/Header';
 import CurrentWeather from './components/CurrentWeather/CurrentWeather';
+import ForecastWeather from './components/ForecastWeather/ForecastWeather';
 
 export default function App() {
   const [state, dispatch] = useReducer(weatherReducer, initWeatherState);
@@ -41,6 +42,9 @@ export default function App() {
       <Header />
       <main className={styles.main}>
         {state?.weather && <CurrentWeather weatherData={state.weather} />}
+        {state?.weather && <CurrentWeather weatherData={state.weather} />}
+        {state?.weather && <ForecastWeather weatherData={state.weather} />}
+        {/* {state?.weather && <ForecastWeather weatherData={state.weather} />} */}
         {/* <CurrentWeather /> */}
       </main>
     </div>
