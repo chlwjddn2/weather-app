@@ -5,6 +5,7 @@ import styles from './App.module.css';
 import Header from './components/Header/Header';
 import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 import ForecastWeather from './components/ForecastWeather/ForecastWeather';
+import TodayInfo from './components/TodayInfo/TodayInfo';
 
 export default function App() {
   const [state, dispatch] = useReducer(weatherReducer, initWeatherState);
@@ -37,13 +38,22 @@ export default function App() {
      state.location && fetchCurrentWeather(state.location.latitude, state.location.longitude);
   }, [state.location]);
 
+  console.log(state);
+  
+
   return (
     <div className={styles.weahterContainer}>
       <Header />
       <main className={styles.main}>
-        {state?.weather && <CurrentWeather weatherData={state.weather} />}
-        {state?.weather && <CurrentWeather weatherData={state.weather} />}
-        {state?.weather && <ForecastWeather weatherData={state.weather} />}
+        <div className={styles.container}>
+          {state?.weather && <CurrentWeather weatherData={state.weather} />}
+          {state?.weather && <ForecastWeather weatherData={state.weather} />}
+        </div>
+
+        <div className={styles.container}>
+          {state?.weather && <TodayInfo weatherData={state.weather} />}
+        </div>
+
         {/* {state?.weather && <ForecastWeather weatherData={state.weather} />} */}
         {/* <CurrentWeather /> */}
       </main>

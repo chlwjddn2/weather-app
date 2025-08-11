@@ -1,0 +1,8 @@
+.todayCard {
+  background-color: #6894EA;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 2rem;
+}

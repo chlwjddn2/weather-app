@@ -20,21 +20,31 @@ export default async function fetchWeatherData(latitude, longitude) {
       appid: API_KEY,
       lang: "kr",
     }
-    
-    const forecastRequest = axios.get('https://api.openweathermap.org/data/2.5/forecast', { params: baseParams });
-    const currentWeatherRequest = axios.get('https://api.openweathermap.org/data/2.5/weather', { params: baseParams });
-    const geoRequest = axios.get('https://api.openweathermap.org/geo/1.0/reverse', { params:geoParams });
 
-    const [forecastResponse, currentWeatherResponse, geoResponse] = await Promise.all([
+    const airParams = {
+      lat: latitude,
+      lon: longitude,
+      appid: API_KEY,
+    }
+
+    const forecastRequest = axios.get('https://api.openweathermap.org/data/2.5/forecast', { params: baseParams }); // 5일 데이터
+    const currentWeatherRequest = axios.get('https://api.openweathermap.org/data/2.5/weather', { params: baseParams }); // 현재 날씨
+    const geoRequest = axios.get('https://api.openweathermap.org/geo/1.0/reverse', { params:geoParams }); // 역추적 현재 위치
+    const airPollutionRequest = axios.get('https://api.openweathermap.org/data/2.5/air_pollution', { params: airParams } // 대기 정보
+    );
+
+    const [forecastResponse, currentWeatherResponse, geoResponse, airPollutionResponse, uvResponse] = await Promise.all([
       forecastRequest,
       currentWeatherRequest,
-      geoRequest
+      geoRequest,
+      airPollutionRequest,
     ]);
 
     return {
       forecast: forecastResponse.data,
       current: currentWeatherResponse.data,
-      locationInfo: geoResponse.data[0]
+      locationInfo: geoResponse.data[0],
+      airPollutionResponse: airPollutionResponse.data,
     }
   } catch(error) {
     throw new Error('전체 날씨 데이터 가져오기 실패: ' + error.message);

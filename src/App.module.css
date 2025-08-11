@@ -5,13 +5,24 @@
 }
   
 .main {
-  display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
-  padding: 0 2rem 2rem 2rem;
-  gap: 2rem;
-  overflow-y: auto;
+  display: flex;
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
+  padding: 0 2rem 2rem 2rem;
+  gap: 2rem;
 }
+
+.main .container:nth-of-type(1) {
+  max-width: 350px;
+}
+
+.container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
 

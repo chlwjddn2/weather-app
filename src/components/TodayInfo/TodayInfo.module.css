@@ -1,0 +1,20 @@
+.title {
+  font-size: 1.5rem;
+}
+
+.container {
+  display: flex;
+  margin-top: 1.5rem;
+}
+
+.infoList {
+  display: flex;
+  gap: 1rem;
+}
+
+.infoList > li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
