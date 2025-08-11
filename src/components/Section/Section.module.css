@@ -1,0 +1,10 @@
+.section {
+  background-color: #68A4EA;
+  border-radius: 2rem;
+  padding: 2rem;
+  display: flex ;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: 3px 3px 5px rgba(0,0,0,.2);
+  color: var(--color-white);
+}

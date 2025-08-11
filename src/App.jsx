@@ -1,8 +1,9 @@
-import fetchWeather from './api/api'
-import { useReducer, useEffect, useState } from 'react'
-import { weatherReducer, initWeatherState } from './store/weatherReducer'
-import styles from './App.module.css'
-import Search from './components/Search/Search'
+import fetchWeatherData from './api/api';
+import { useReducer, useEffect, useState } from 'react';
+import { weatherReducer, initWeatherState } from './store/weatherReducer';
+import styles from './App.module.css';
+import Header from './components/Header/Header';
+import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 
 export default function App() {
   const [state, dispatch] = useReducer(weatherReducer, initWeatherState);
@@ -19,7 +20,7 @@ export default function App() {
   const fetchCurrentWeather = async (latitude, longitude) => {
     dispatch({ type: 'FETCH_WEATHER_START' });
     try {
-      const data = await fetchWeather(latitude, longitude);
+      const data = await fetchWeatherData(latitude, longitude);
       dispatch({ type: 'FETCH_WEATHER_SUCCESS', payload: data });
     } catch (error) {
       dispatch({ type: 'FETCH_WEATHER_ERROR', payload: error.message });
@@ -35,14 +36,13 @@ export default function App() {
      state.location && fetchCurrentWeather(state.location.latitude, state.location.longitude);
   }, [state.location]);
 
-  console.log(state);
-  
-
   return (
     <div className={styles.weahterContainer}>
-      <Search />
-      <h1>{state.weather?.name}</h1>
-      <h2>{state.weather?.name}</h2>
+      <Header />
+      <main className={styles.main}>
+        {state?.weather && <CurrentWeather weatherData={state.weather} />}
+        {/* <CurrentWeather /> */}
+      </main>
     </div>
   )
 }

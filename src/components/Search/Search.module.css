@@ -1,9 +1,7 @@
-.search{}
-
 .form {
   width: 500px;
-  margin: 0 auto;
   position: relative;
+  color: var(--color-black);
 }
 
 .form > input {
@@ -14,8 +12,8 @@
   line-height: 2.5rem;
   padding: 0 2rem 0 1rem;
   font-size: 1rem;
-  color: #575656;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, .5);
+  background-color: var(--color-white);
 }
 
 .form > label {
@@ -33,6 +31,16 @@
 .form > input:focus {
   border: none; 
   outline: none;
+}
+
+.form > button {
+  position: absolute;
+  top: 50%;
+  right: 1.2rem;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
 }
 
     
