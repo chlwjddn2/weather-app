@@ -1,4 +1,4 @@
-export default function SingleDonutChart({ value, max = 100, size = 70 }) {
+export default function SingleDonutChart({ value, max = 100, size = 90 }) {
   const radius = 70;
   const circumference = 2 * Math.PI * radius;
   const percent = Math.min(value / max, 1); // 0~1 사이 값
@@ -34,7 +34,7 @@ export default function SingleDonutChart({ value, max = 100, size = 70 }) {
         y="90"
         textAnchor="middle"
         fontSize="32"
-        fill="#333"
+        fill="#D9F7E2"
         fontWeight="bold"
       >
         {value}
