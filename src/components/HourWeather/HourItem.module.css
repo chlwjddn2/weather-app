@@ -1,0 +1,16 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #5A93D3;
+  padding: 1rem 0;
+  border-radius: 1rem;
+}
+
+.item > img {
+  width: 80px;
+}
+
+.item .hour {
+  font-weight: bold;
+}

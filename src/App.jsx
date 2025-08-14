@@ -6,6 +6,8 @@ import Header from './components/Header/Header';
 import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 import ForecastWeather from './components/ForecastWeather/ForecastWeather';
 import TodayInfo from './components/TodayInfo/TodayInfo';
+import HourWeather from './components/HourWeather/HourWeather';
+
 
 export default function App() {
   const [state, dispatch] = useReducer(weatherReducer, initWeatherState);
@@ -52,6 +54,7 @@ export default function App() {
 
         <div className={styles.container}>
           {state?.weather && <TodayInfo weatherData={state.weather} />}
+          {state?.weather && <HourWeather weatherData={state.weather} />}
         </div>
 
         {/* {state?.weather && <ForecastWeather weatherData={state.weather} />} */}

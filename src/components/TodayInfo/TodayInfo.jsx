@@ -139,7 +139,7 @@ export default function ForecastWeather({weatherData = {}}) {
               <div className={styles.icon}><WiHumidity /></div>
               <ul className={styles.infoList}>
                 <li>
-                  <p>{feels_like} <sub></sub> </p>
+                  <p>{Math.floor(feels_like)}° <sub>C</sub></p>
                 </li>
               
               </ul>
