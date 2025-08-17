@@ -3,7 +3,7 @@ import axios from "axios";
 const API_KEY = 'fe7a63959f4875251b8082ecf6229447';
 
 // 날씨 api 연동
-export default async function fetchWeatherData(latitude, longitude) {
+export async function fetchWeatherData(latitude, longitude) {
   try {
     const baseParams = {
       lat: latitude,
@@ -40,8 +40,7 @@ export default async function fetchWeatherData(latitude, longitude) {
     const geoRequest = axios.get('https://api.openweathermap.org/geo/1.0/reverse', { params:geoParams }); // 역추적 현재 위치
     const airPollutionRequest = axios.get('https://api.openweathermap.org/data/2.5/air_pollution', { params: airParams } // 대기 정보
     );
-    const airPollutionHistoryRequest = axios.get('https://api.openweathermap.org/data/2.5/air_pollution/history', {
-    params: airHistoryParams });
+    const airPollutionHistoryRequest = axios.get('https://api.openweathermap.org/data/2.5/air_pollution/history', {params: airHistoryParams });
 
     const [forecastResponse, currentWeatherResponse, geoResponse, airPollutionResponse, airPollutionHistoryResponse] = await Promise.all([
       forecastRequest,
@@ -62,5 +61,24 @@ export default async function fetchWeatherData(latitude, longitude) {
     throw new Error('전체 날씨 데이터 가져오기 실패: ' + error.message);
   }
 }
+// 도시 이름으로 날씨 가져오기
+export async function fetchWeatherByCityData(city) {
+  try {
+    const params = {
+      q: city,
+      limit: 1,
+      appid: API_KEY,
+    };
 
+    const response = await axios.get("https://api.openweathermap.org/geo/1.0/direct", {
+  params: params
+});
+    return response.data;
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      throw new Error("도시를 찾을 수 없습니다 ❌");
+    }
+    throw new Error("도시 날씨 데이터 가져오기 실패: " + error.message);
+  }
+}
 

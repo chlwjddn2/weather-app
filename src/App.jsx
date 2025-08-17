@@ -1,4 +1,4 @@
-import fetchWeatherData from './api/api';
+import {fetchWeatherData, fetchWeatherByCityData} from './api/api';
 import { useReducer, useEffect, useState } from 'react';
 import { weatherReducer, initWeatherState } from './store/weatherReducer';
 import styles from './App.module.css';
@@ -8,6 +8,7 @@ import ForecastWeather from './components/ForecastWeather/ForecastWeather';
 import TodayInfo from './components/TodayInfo/TodayInfo';
 import HourWeather from './components/HourWeather/HourWeather';
 
+console.log('fetchWeatherData', fetchWeatherData());
 
 export default function App() {
   const [state, dispatch] = useReducer(weatherReducer, initWeatherState);
@@ -32,6 +33,16 @@ export default function App() {
     }
   }
 
+  const fetchWeatherByCity = async (city) => { // 도시 검색
+    try {
+      const data = await fetchWeatherByCityData(city); // axios API 사용
+      const {lat, lon} = data[0];
+      fetchCurrentWeather(lat, lon);
+    } catch (error) {
+      dispatch({ type: 'FETCH_WEATHER_ERROR', payload: error.message });
+    }
+  };
+
   useEffect(() => {
     getCurrentLocation();
   }, [])
@@ -45,7 +56,7 @@ export default function App() {
 
   return (
     <div className={styles.weahterContainer}>
-      <Header />
+      <Header onSearch={fetchWeatherByCity}/>
       <main className={styles.main}>
         <div className={styles.container}>
           {state?.weather && <CurrentWeather weatherData={state.weather} />}

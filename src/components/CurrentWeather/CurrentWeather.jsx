@@ -8,9 +8,9 @@ export default function CurrentWeather({weatherData = {}}) {
   const {current, forecast, locationInfo} = weatherData;
   
   const currentTemperature = Math.floor(current?.main.temp);
-  const description = current.weather[0].description;
-  const icon = current.weather[0].icon;
-  const location = locationInfo.local_names.ko;
+  const description = current?.weather[0].description;
+  const icon = current?.weather[0].icon;
+  const location = locationInfo?.local_names.ko;
   
   return (
     <Section>
