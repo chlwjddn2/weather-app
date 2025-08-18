@@ -69,16 +69,23 @@ export async function fetchWeatherByCityData(city) {
       limit: 1,
       appid: API_KEY,
     };
+    const response = await axios.get("https://api.openweathermap.org/geo/1.0/direct", { params });
 
-    const response = await axios.get("https://api.openweathermap.org/geo/1.0/direct", {
-  params: params
-});
+    // 없는 도시일 경우
+    if (!response.data || response.data.length === 0) {
+      const error = new Error("검색 결과가 없습니다.");
+      error.code = "NOT_FOUND";
+      throw error;
+    }
+
     return response.data;
   } catch (error) {
     if (error.response && error.response.status === 404) {
-      throw new Error("도시를 찾을 수 없습니다 ❌");
+      const err = new Error("도시를 찾을 수 없습니다.");
+      err.code = "NOT_FOUND";
+      throw err;
     }
-    throw new Error("도시 날씨 데이터 가져오기 실패: " + error.message);
+    throw error; // 일반 에러는 그대로 던짐
   }
 }
 

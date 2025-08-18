@@ -8,8 +8,6 @@ import ForecastWeather from './components/ForecastWeather/ForecastWeather';
 import TodayInfo from './components/TodayInfo/TodayInfo';
 import HourWeather from './components/HourWeather/HourWeather';
 
-console.log('fetchWeatherData', fetchWeatherData());
-
 export default function App() {
   const [state, dispatch] = useReducer(weatherReducer, initWeatherState);
 
@@ -39,7 +37,8 @@ export default function App() {
       const {lat, lon} = data[0];
       fetchCurrentWeather(lat, lon);
     } catch (error) {
-      dispatch({ type: 'FETCH_WEATHER_ERROR', payload: error.message });
+      console.log(error.code);
+      dispatch({ type: 'FETCH_WEATHER_ERROR', payload: {message: error.message, code: error.code} });
     }
   };
 
@@ -48,28 +47,29 @@ export default function App() {
   }, [])
   
   useEffect(() => {
-     state.location && fetchCurrentWeather(state.location.latitude, state.location.longitude);
+    state.location && fetchCurrentWeather(state.location.latitude, state.location.longitude);
   }, [state.location]);
-
-  console.log(state);
-  
 
   return (
     <div className={styles.weahterContainer}>
       <Header onSearch={fetchWeatherByCity}/>
+
       <main className={styles.main}>
-        <div className={styles.container}>
-          {state?.weather && <CurrentWeather weatherData={state.weather} />}
-          {state?.weather && <ForecastWeather weatherData={state.weather} />}
-        </div>
+        {state.errorCode === 'NOT_FOUND' && <div className={styles.errorBox}>{state.error}</div>}
 
-        <div className={styles.container}>
-          {state?.weather && <TodayInfo weatherData={state.weather} />}
-          {state?.weather && <HourWeather weatherData={state.weather} />}
-        </div>
+        {!state.error && state?.weather && (
+          <>
+            <div className={styles.container}>
+              <CurrentWeather weatherData={state.weather} />
+              <ForecastWeather weatherData={state.weather} />
+            </div>
 
-        {/* {state?.weather && <ForecastWeather weatherData={state.weather} />} */}
-        {/* <CurrentWeather /> */}
+            <div className={styles.container}>
+              <TodayInfo weatherData={state.weather} />
+              <HourWeather weatherData={state.weather} />
+            </div>
+          </>
+        )}
       </main>
     </div>
   )
