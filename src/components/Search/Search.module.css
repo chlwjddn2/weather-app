@@ -43,4 +43,14 @@
   font-size: 1.2rem;
 }
 
-    
+@media (max-width: 767px) { 
+  .form {
+    width: 280px;
+  }
+} 
+
+@media (max-width: 610px) { 
+  .form {
+    width: 150px;
+  }
+} 

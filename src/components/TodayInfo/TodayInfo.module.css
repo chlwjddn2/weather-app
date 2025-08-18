@@ -4,7 +4,7 @@
 
 .container {
   display: grid;
-   grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
   margin-top: 1.5rem;
 }
@@ -52,3 +52,20 @@
 .infoCardTitle {
   font-weight: bold;
 }
+
+@media (max-width: 1280px) { 
+  
+  .container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+} 
+
+@media (max-width: 767px) { 
+  .innerBox {
+   flex-direction: column; 
+  }
+  .infoList {
+    
+    gap: 2rem;
+  }
+} 

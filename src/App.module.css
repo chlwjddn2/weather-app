@@ -36,4 +36,13 @@
   font-weight: bold;
 }
 
+@media (max-width: 1440px) {
+  .main {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 
+  .main .container:nth-of-type(1) {
+    max-width: none;
+  }
+}  
