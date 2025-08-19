@@ -7,6 +7,7 @@ import CurrentWeather from './components/CurrentWeather/CurrentWeather';
 import ForecastWeather from './components/ForecastWeather/ForecastWeather';
 import TodayInfo from './components/TodayInfo/TodayInfo';
 import HourWeather from './components/HourWeather/HourWeather';
+import { ClipLoader } from "react-spinners";
 
 export default function App() {
   const [state, dispatch] = useReducer(weatherReducer, initWeatherState);
@@ -37,7 +38,6 @@ export default function App() {
       const {lat, lon} = data[0];
       fetchCurrentWeather(lat, lon);
     } catch (error) {
-      console.log(error.code);
       dispatch({ type: 'FETCH_WEATHER_ERROR', payload: {message: error.message, code: error.code} });
     }
   };
@@ -50,14 +50,18 @@ export default function App() {
     state.location && fetchCurrentWeather(state.location.latitude, state.location.longitude);
   }, [state.location]);
 
+  console.log(state);
+  
+
   return (
     <div className={styles.weahterContainer}>
+      
       <Header onSearch={fetchWeatherByCity}/>
 
       <main className={styles.main}>
+        {state.loading === 'start' && <ClipLoader color="#3b82f6" size={100} />}
         {state.errorCode === 'NOT_FOUND' && <div className={styles.errorBox}>{state.error}</div>}
-
-        {!state.error && state?.weather && (
+        {state.loading !== 'start' && !state.error && state?.weather && (
           <>
             <div className={styles.container}>
               <CurrentWeather weatherData={state.weather} />

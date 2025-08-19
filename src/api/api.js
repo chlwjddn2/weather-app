@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = 'fe7a63959f4875251b8082ecf6229447';
+const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 // 날씨 api 연동
 export async function fetchWeatherData(latitude, longitude) {
