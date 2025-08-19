@@ -43,7 +43,7 @@
   font-size: 1.2rem;
 }
 
-@media (max-width: 767px) { 
+@media (max-width: 820px) { 
   .form {
     width: 280px;
   }
@@ -52,5 +52,11 @@
 @media (max-width: 610px) { 
   .form {
     width: 150px;
+  }
+} 
+
+@media (max-width: 480px) { 
+  .form {
+    width: 100%;
   }
 } 

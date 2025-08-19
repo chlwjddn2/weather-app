@@ -21,3 +21,12 @@
   gap: 0.5rem;
   font-family: "DNFBitBitv2", sans-serif;
 }
+
+
+@media (max-width: 480px) { 
+  .header {
+   flex-direction: column; 
+   height: auto;
+   gap: 1rem;
+  }
+}
